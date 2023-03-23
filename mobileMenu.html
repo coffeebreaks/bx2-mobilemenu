@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menydemo</title>
+</head>
+
+<body>
+
+    <div class="mobile__menu">
+        <div class="mobile__menu__top">
+            <img class="menu__logo" src="logo.png" />
+            <img class="button menu__backarrow" src="icons/blue/leftarrow.png">
+        </div>
+
+        <div class="mobile__menu__nav">
+            <div class="nav__rows">
+
+                <div class="button nav__row__item">
+                    <img class="row__icon" src="icons/blue/note.png" />
+                    <a class="row__link"> Arbetspass</a>
+                </div>
+
+                <div class="button nav__row__item">
+                    <img class="row__icon" src="icons/blue/doublearrow.png" />
+                    <a class="row__link"> Pågående jobb</a>
+                </div>
+
+                <div class="button nav__row__item ">
+                    <img class="row__icon selected" src="icons/blue/coffee.png" />
+                    <a class="row__link "> Slutförda jobb</a>
+                </div>
+
+                <div class="button nav__row__item">
+                    <img class="row__icon" src="icons/blue/edit.png" />
+                    <a class="row__link"> Nytt jobb</a>
+                </div>
+
+                <div class="button mobile__menu__feeback" id="mobileMenuFeedback">
+                    <p> Skicka feedback</p>
+                </div>
+
+                <div id="mobileExit" class="button mobile__menu__exit">
+                    <p class="exit__text"> Avsluta MobilApp</p> <img class="exit__icon" src="icons/red/delete.png" />
+                </div>
+
+                <hr />
+
+                <div class="mobile__menu__user">
+                    <div id="userIcon" class="user__icon"></div>
+                    <p id="userEmail" class="user__email"></p>
+
+                    <script>
+                        //Hämta email, trimma första bokstav till ikonen.
+                        //Wrappa i en "document.ready" om det behövs.
+                        const userEmail = "stefan@grafikcentralen.se";
+                        const firstLetter = userEmail[0]
+                        const userIcon = document.getElementById("userIcon")
+                        const userEmailField = document.getElementById("userEmail")
+                        userIcon.innerHTML = firstLetter.toUpperCase()
+                        userEmailField.innerHTML = userEmail
+                    </script>
+
+                    <div id="userLogout" class="button user__logout">Logga ut</div>
+                </div>
+            </div>
+
+            <!-- Dialoger -->
+            <Dialog class="dialog__feedback" id="dialogFeedback">
+                <div class="dialog__wrapper">
+                    <p>Vad tycker du vi kan göra bättre?</p>
+                    <textarea></textarea>
+                    <p>Proritering</p>
+                    <select>
+                        <option value="option1">🔥</option>
+                        <option value="option2">🔥🔥</option>
+                        <option value="option4">🔥🔥🔥</option>
+                        <option value="option5">🔥🔥🔥🔥</option>
+                        <option value="option6">🔥🔥🔥🔥🔥</option>
+                    </select>
+                    <div id="dialogFeedbackSend" class="button dialog__send">Skicka</div>
+                    <div id="dialogFeedbackCancel" class="button dialog__cancel">Tillbaka</div>
+                </div>
+            </Dialog>
+
+            <Dialog class="dialog__logout" id="dialogLogout">
+                <div class="dialog__wrapper">
+                    <p> Logga ut: </p>
+                    <p>stefan@grafikcentralen.se?</p>
+                    <div id="dialogLogoutSend" class="button dialog__send">Logga ut</div>
+                    <div id="dialogLogutCancel" class="button dialog__cancel">Tillbaka</div>
+                </div>
+
+            </Dialog>
+
+            <Dialog class="dialog__exit" id="dialogExit">
+                <div class="dialog__wrapper">
+                    <p> Vill du avsluta Bravo X2 MobilApp och gå tillbaka till startskärmen?</p>
+                    <div id="dialogLogoutSend" class="button dialog__send">Avsluta</div>
+                    <div id="dialogExitCancel" class="button dialog__cancel">Tillbaka</div>
+                </div>
+            </Dialog>
+
+            <script>
+                //Feedback Dialog
+                const feedbackButton = document.getElementById("mobileMenuFeedback")
+                const dialogFeedback = document.getElementById("dialogFeedback")
+                const dialogFeedbackCancel = document.getElementById("dialogFeedbackCancel")
+                feedbackButton.addEventListener("click", () => dialogFeedback.showModal())
+                dialogFeedbackCancel.addEventListener("click", () => dialogFeedback.close())
+
+                //Logout Dialog
+                const logoutButton = document.getElementById("userLogout")
+                const logoutDialog = document.getElementById("dialogLogout")
+                const logoutClose = document.getElementById("dialogLogutCancel")
+                logoutButton.addEventListener("click", () => logoutDialog.showModal())
+                logoutClose.addEventListener("click", () => logoutDialog.close())
+
+                //Avsluta Dialog
+                const exitButton = document.getElementById("mobileExit")
+                const exitDialog = document.getElementById("dialogExit")
+                const exitClose = document.getElementById("dialogExitCancel")
+                exitButton.addEventListener("click", () => exitDialog.showModal())
+                exitClose.addEventListener("click", () => exitDialog.close())
+            </script>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
